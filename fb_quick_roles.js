@@ -15,13 +15,12 @@ sleep(1000);
 var gonghui = require("./fb_gonghui");
 var meiri = require("./fb_meiri");
 var wuling = require("./fb_wuling");
-// var util = require("./util");
+// const util = require("./util");
+const uu = require("./user_util");
 
 for (let index = 0; index < roles.length; index++) {
   var aRole = roles[index];
   changeRole(aRole);
-
-  // u.until_find_image("./assets/main/菜单入口.png", { click: true });
 
   sleep(2000);
   if (aRole.prepareAttactMode != null) {
@@ -43,9 +42,10 @@ for (let index = 0; index < roles.length; index++) {
   }
 
   if (aRole.wuling) {
-    wuling();
+    wuling();  
     sleep(2000);
   }
 
-  util.get_mission_bonus();
+  uu.get_mission_bonus();
+  uu.receive_msg();
 }

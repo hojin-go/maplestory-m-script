@@ -411,7 +411,9 @@ util.get_mission_bonus = () => {
       { timeout: 2000 }
     );
     if (success != null) {
-      util.find_image("./assets/mission_get_bonus_dialog_close.png", {click: true});
+      util.find_image("./assets/mission_get_bonus_dialog_close.png", {
+        click: true,
+      });
     }
   }
 
@@ -420,6 +422,58 @@ util.get_mission_bonus = () => {
 
   // 关闭主菜单
   util.until_find_image("./assets/main/关闭菜单.png", { click: true });
+};
+
+// 收信
+util.receive_msg = () => {
+  // 确认在首页
+  util.until_find_image("./assets/main_menu_msg_box.png", { click: true });
+
+  // 确认在信箱弹窗
+  util.until_find_image("./assets/msg_open_id.png");
+
+  // 切换公用， 并全部领取
+  var pubRect = {
+    x: 466, y: 333, w: 536, h: 95
+  };
+  util.clickWithRect(pubRect, 1000);
+
+  // 等待领取成功弹窗，超时2s，如果弹出，关闭弹窗
+  if (
+    util.until_find_image("./assets/btn_all_receive.png", {
+      click: true,
+      timeout: 2000,
+    }) != null
+  ) {
+    util.until_find_image("./assets/btn_confirm.png", {
+      click: true,
+      timeout: 2000,
+    });
+  }
+
+  // 切换个人信箱，并全部领取
+  var personalRect = {
+    x: 1013, y: 333, w: 549, h: 95
+  };
+  util.clickWithRect(personalRect, 1000);
+
+  // 等待领取成功弹窗，超时2s，如果弹出，关闭弹窗
+  if (
+    util.until_find_image("./assets/btn_all_receive.png", {
+      click: true,
+      timeout: 2000,
+    }) != null
+  ) {
+    util.until_find_image("./assets/btn_confirm.png", {
+      click: true,
+      timeout: 2000,
+    });
+  }
+  // 关闭信箱
+  util.until_find_image("./assets/main/关闭菜单.png", {click: true});
+
+  // 关闭菜单
+  util.until_find_image("./assets/main/关闭菜单.png", {click: true});
 };
 
 module.exports = util;

@@ -28,6 +28,7 @@ const boss = require("./fb_boss");
 const jinhua = require("./fb_jinhua");
 const mini = require("./fb_mini");
 const jzt = require("./fb_jinzita");
+const uu = require("./user_util");
 
 for (let index = 0; index < roles.length; index++) {
   var aRole = roles[index];
@@ -71,5 +72,6 @@ for (let index = 0; index < roles.length; index++) {
     sleep(2000);
   }
 
-  u.get_mission_bonus();
+  uu.get_mission_bonus();
+  uu.receive_msg();
 }
